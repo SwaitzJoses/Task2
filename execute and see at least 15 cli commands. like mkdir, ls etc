@@ -1,0 +1,186 @@
+1.ls
+ls is a utility for listing the files in a directory.
+
+$ ls
+fish  hello.txt
+
+2. mkdir is a utility for creating a directory.
+
+$ mkdir newdirectoryname
+
+3.pwd (for Print Working Directory) shows the current directory that you are in.
+
+Though "pwd" is often available as an external program (like /bin/pwd), many shells offer an equivalent version as a shell builtin command. Like any external command, "pwd" would inherit the current directory from the shell or other program that starts it.
+
+Examples
+
+$ pwd
+/home/username
+
+
+4.chroot changes the root filesystem. The "chroot" page at the Linux questions wiki explains why you might want to do this.
+
+Examples
+
+To change the root filesystem so /mnt/usbdrive/ becomes / and files outside of it cannot be seen:
+
+# chroot /mnt/usbdrive/
+
+5.cp
+cp copies a file
+
+Most used options are:
+
+-r
+copies directories (recursively)
+-p
+preserves permissions, ownership, and timestamps
+-i
+prompt before overwrite
+-v
+verbose, show filenames as they are being copied
+Examples
+
+Makes a copy of file 'debian' and call it 'Debian' (assuming 'Debian' is not already a directory)
+$ cp -i debian Debian
+Makes a copy of file 'debian' and put it at /tmp/debian
+$ cp -i debian /tmp/debian 
+Same as the previous command (the filename defaults to be the same).
+$ cp -i debian /tmp 
+Makes a copy of directory 'mydir' (and all its contents) and put it at /tmp/mydir
+$ cp -ir mydir/ /tmp 
+Copy multiple files to dire
+
+6.mv
+mv move and/or rename files
+
+Examples
+
+Rename file 'unix' to 'Unix' (assuming "Unix" is not a directory)
+$ mv -i unix Unix
+Move file Unix from your home directory to /tmp.
+$ mv -i ~/Unix /tmp/Unix
+Same as the previous command (the filename defaults to be the same).
+$ mv -i ~/Unix /tmp
+Move file Unix from your home directory to /tmp, and rename it to 'unix'.
+$ mv -i ~/Unix /tmp/unix
+Move multiple files to directory /tmp
+$ mv -i foo bar baz /tmp
+
+
+7.rm deletes a file from the filesystem, like the "del" command in DOS.
+
+The GNU long options (like --directory) are available on Linux, but not most other systems.
+
+Some useful options are:
+
+-d, --directory
+unlink FILE, even if it is an empty directory (some systems let superuser unlink non-empty directories too)
+-f, --force
+ignore nonexistent files, never prompt
+-i, --interactive
+prompt before any removal
+-P
+(*BSD only) overwrite file before deletion
+-r, -R, --recursive
+remove the contents of directories recursively (the force option must often be used to successfully run rm recursively)
+-v, --verbose
+(GNU only) explain what is being done
+--help
+(GNU only) display help and exit
+--version
+(GNU only) output version information and exit
+Examples:
+
+The usage of "rm" is considered potentially more dangerous than equivalents in other operating systems because of the way the shell parses wildcards and names of special directories and in its non-verbose actions.
+
+Here is a classic example. Instead of deleting files that end with .o ("*.o") it deletes all files in the directory ("*") and also a file called .o. There is an unwanted space between the asterisk and the period.
+
+$ rm * .o
+rm: cannot remove `.o': No such file or directory
+To remove a file whose name starts with a `-', for example `-foo', use one of these commands:
+
+$ rm -- -foo
+$ rm ./-foo
+
+
+8.rmdir
+rmdir is a utility for deleting empty directories.
+
+Examples
+
+$ rmdir directoryname
+If the directory is not empty, the correct way to remove the directory and all its contents recursively is to use
+
+$ rm -r directoryname
+
+9.shred overwrites a file multiple times with special data patterns to make the old contents of the file unrecoverable from a disk, especially a hard disk. This command is part of GNU coreutils, so it is often only available on Linux systems.
+
+Note that this actually is ineffective on most filesystems because they can keep old copies of data. Most popular Linux filesystems (including ext3) keep such copies through journaling. However, "shred" is very useful for destroying the data on entire partitions or disks.
+
+Some useful options are:
+
+-u, --remove
+unlink the file after removing it
+-NUMBER, -n NUMBER, --iterations=NUMBER
+the number of iterations of overwriting the file; default is 25 iterations
+Examples: Remove and completely destroy secretfile from a filesystem that overwrites data in place and does not use journaling (for example, the UFS filesystem of *BSD). For the last step, after the data is destroyed, the "-u" option unlinks the file from the filesystem.
+
+$ shred -u secretfile
+
+
+10.touch lets you change the date on a file. Can also be used to create a blank file.
+
+Examples
+
+This will change the access date and time of filename to the current time. If filename doesn't exist it will create a blank file.
+
+$ touch filename
+
+11.df
+df reports the amount of free disk space available on each partition.
+
+$ df
+Filesystem           1K-blocks      Used Available Use% Mounted on
+/dev/md0               5763508    207380   5263352   4% /
+/dev/md1              78819376  13722288  61093296  19% /home
+/dev/md4              23070564   4309572  17589056  20% /usr
+/dev/md2               5763508   1757404   3713328  33% /var
+/dev/md3               2877756    334740   2396832  13% /tmp
+
+
+
+12.du
+Shows disk usage.
+
+13.ln
+ln creates links between files.
+$ ls -l
+total 1
+-rw-r--r--  1  rtm  users  50  Aug 15   foo
+$ ln foo bar
+$ ls -l
+total 2
+-rw-r--r--  2  rtm  users  50  Aug 15   foo
+-rw-r--r--  2  rtm  users  50  Aug 15   bar
+
+14.chown changes the owner and group of files. Normally, only root is allowed to do this, but if a user owns a file, then that user can change the group, but only to groups containing that user. On old systems, the ability of users to give files to other users caused abuses, so most systems prohibit non-root users from changing the owner of files.
+
+Some useful options are:
+
+-R
+recursively change owner/group on an entire directory tree
+-h
+do not follow symbolic links i.e. changes owner of the link, not the target file
+-f
+indicate no errors if change failed
+Examples:
+
+Root changes the ownership of "/etc/passwd" and "/etc/shadow" to user root, group wheel:
+
+# chown root:wheel /etc/passwd /etc/shadow
+15.chmod changes permissions of files. 
+
+$ chmod +x configure
+$ ./configure
+
