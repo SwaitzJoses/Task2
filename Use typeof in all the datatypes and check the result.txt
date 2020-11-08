@@ -1,0 +1,25 @@
+Use typeof in all the datatypes and check the result
+
+console.log(typeof 1);
+ output: "number"
+
+console.log(typeof "1.1");
+ output: "string"
+
+console.log(typeof 1.1);
+ output: "number"
+
+console.log(typeof true);
+ output: "boolean"
+
+console.log(typeof null);
+ output: "object"
+
+console.log(typeof undefined);
+ output: "undefined"
+
+console.log(typeof []);
+ output: "object"
+
+console.log(typeof {});
+ output: "object"
