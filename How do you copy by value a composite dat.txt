@@ -1,0 +1,75 @@
+How do you copy by value a composite data type in JavaScript ?
+
+What is a Data type?
+In computer science and computer programming, a data type or simply type is an attribute of data which tells the
+compiler or interpreter how the programmer intends to use the data.
+
+Three major Categories of Data types in JavaScript.
+Primitive :data types such as number: 2,1.5, Boolean: True/false, String: ‘Apple’.
+Special: data types such as Null and Undefined.
+Composite: data types such as arrays:[1,2,3],objects:{name: “sam”,number: “123”},functions.
+
+Copy by value Vs Copy by Reference in JavaScript.
+
+What is copy by value?
+In copy by value, When the variable data is assigned to another variable, both the variables refer to different
+memory locations. Here deep copying is performed, i.e if the value is altered in one variable it doesn’t affect
+the value stored in another variable as both the data are stored in different memory locations. All primitive
+and special data types are copied by value. 
+
+What is copy by reference?
+In copy by reference, When the variable data is assigned to another variable, only a new address for the
+assigned variable is created, i.e If the data of one variable is altered it also changes the data in another
+variable, as the data from both the variable are stored in same memory location(i.e both the address of the variable
+point to same memory location).All composite data types are copied by reference. For example.
+So now arises a question, Can you copy by value a composite data type in JavaScript ?
+
+
+Yes you can, there are basically five ways to do it.
+Using spread operator(…).
+Using Object.assign() method.
+Using the JSON.stringify() and JSON.parse() methods.
+Using Slice() method in JavaScript.
+Using Array.map().
+
+1.Using Spread
+Spread operator is used to spread elements in an array into their individual property. For instance if there
+is a function and addition is to be performed between two variables and if it’s values are in the form of an
+array, then by using spread operator, it spreads the elements of the array into their individual datatype(here i.e number)
+and performs the addition. As shown in the example below.
+
+This ability of Spread operator to spreads the elements of the array into their individual datatype, helps us to clone
+ the object and copy the elements by value. In the example below when copied variable value is changed but original 
+ variable value remain same.
+
+2. Using Object.assign()
+The Object.assign() method copies all elements own properties from one or more source objects to a target object.
+ Note the empty [] as the first argument, this will ensure you don’t mutate the original object.
+
+In the above example when the variable b is assigned to a, and the value of b is altered, the corresponding index 
+value of a also altered. But when Object.assign() is used, a clone of b is made and values altered in this clone does
+not affect the values in a.
+
+3. Using JSON.parse() and JSON.stringify()
+The JSON object, available in all modern browsers, has two useful methods to deal with JSON-formatted 
+content: parse and stringify.
+JSON.stringify() takes a JavaScript object and transforms it into a JSON.
+JSON.parse() takes a JSON string and transforms it into a JavaScript object.
+so we can use it here, first convert the object to string using stringify() method and then convert it back to object
+using parse().
+
+4.Using slice()
+This method is normally used to return a subset of the elements, starting at a specific index and optionally ending
+at a specific index of the original array. When using array.slice()you will end up with a copy of the original array.
+
+5.Using Array.map()
+This methods will return a new array with all (or some) values of the original one. While doing that, you can also modify
+the values, which comes in very handy:
+
+
+
+
+
+
+
+
