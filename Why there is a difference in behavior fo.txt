@@ -1,0 +1,26 @@
+Why there is a difference in behavior for copying contents in primitive and non primitive type?
+
+Primitive type includes Number, String, Boolean. Primitive variable stores primitive value.
+Whereas the Non-primitive type aka Reference type are any instantiable class as well as arrays.
+ Example: Array, Object, function. Reference variables store addresses.
+Assignment:
+copies the contents of RHS variable into LHS variable
+primitives: the primitive value is copied (Call by value)
+references: the address is copied (Call by reference)
+implications: for references the object is not copied, it is shared (reference variables are aliases)
+
+1.Call by value:
+In Copy/call by value, when we assign a variable to an other variable, variable data is passed to another variable .
+ oth the variables refers two different memory locations. consider the below example. No memory location is shared,
+just the data is copied to another memory location. All primitive data by default follows call by value.
+
+
+2. Call by reference
+In call by reference, no new memory is created/allocate when trying to copy. Just an reference is create which points
+to the old memory. All composite datatypes follow call by reference by default. Lets look at the example below for better
+understanding.
+
+
+
+
+
